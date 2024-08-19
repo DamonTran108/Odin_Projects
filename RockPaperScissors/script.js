@@ -1,3 +1,69 @@
+
+const container = document.querySelector(".container");
+
+const rockButton = document.createElement("button");
+
+rockButton.textContent = "Rock";
+
+rockButton.id = "Rock";
+
+const paperButton = document.createElement("button");
+
+paperButton.textContent = "Paper";
+
+paperButton.id = "Paper";
+
+const scissorButton = document.createElement("button");
+
+scissorButton.textContent = "Scissor";
+
+scissorButton.id = "Scissor";
+
+
+const humanScoreDisplay = document.querySelector(".humanScoreValue");
+
+const cpuScoreDisplay = document.querySelector(".cpuScoreValue");
+
+
+container.appendChild(rockButton);
+
+container.appendChild(paperButton);
+
+container.appendChild(scissorButton);
+
+
+
+
+container.addEventListener('click', (event) => {
+
+    let choice = event.target;
+
+
+
+    switch(choice.id){
+
+        case 'Rock' :
+            console.log("rock button clicked");
+            playRound(choice.id, getComputerChoice());
+            break;
+
+        case 'Paper' :
+             console.log("Paper button clicked");  
+             playRound(choice.id, getComputerChoice());
+             break;
+        
+        case 'Scissor' :
+            console.log("Scissor button clicked");  
+            playRound(choice.id, getComputerChoice());
+            break;
+    }
+})
+
+
+
+
+
+
 var humanScore = 0
 
 var computerScore = 0;
@@ -5,7 +71,7 @@ var computerScore = 0;
 
 function getComputerChoice(){
 
-    var choice = Math.floor(Math.random() * (3 - 1 )+ 1);
+    var choice = Math.floor(Math.random() * (3 - 1  + 1)+ 1);
 
 
     var choiceAction = "";
@@ -22,7 +88,7 @@ function getComputerChoice(){
     }
 
     if(choice == 3){
-        choiceAction = "Scissors";
+        choiceAction = "Scissor";
     }
 
     console.log("CPU CHOICE : " + choiceAction);
@@ -48,11 +114,11 @@ function getHumanChoice(){
 
 function playRound(humanChoice, computerChoice){
 
-    result = ""
+    let result = document.querySelector(".results");
 
     if (humanChoice == "Rock" && computerChoice == "Paper"){
 
-        result = "You Lose!";
+        result.textContent = "You Lose!";
 
         computerScore++;
 
@@ -62,16 +128,16 @@ function playRound(humanChoice, computerChoice){
    
     if (humanChoice == "Paper" && computerChoice == "Rock"){
 
-        result = "You Win!";
+        result.textContent = "You Win!";
 
         humanScore++;
 
     }
 
 
-    if (humanChoice == "Scissors" && computerChoice == "Paper"){
+    if (humanChoice == "Scissor" && computerChoice == "Paper"){
 
-       result = "You Win!";
+        result.textContent = "You Win!";
 
         humanScore++;
 
@@ -79,18 +145,18 @@ function playRound(humanChoice, computerChoice){
 
 
    
-    if (humanChoice == "Paper" && computerChoice == "Scissors"){
+    if (humanChoice == "Paper" && computerChoice == "Scissor"){
 
-        result = "You Lose!";
+        result.textContent = "You Lose!";
 
         computerScore++;
 
     }
 
 
-    if (humanChoice == "Rock" && computerChoice == "Scissors"){
+    if (humanChoice == "Rock" && computerChoice == "Scissor"){
 
-        result = "You Win!";
+        result.textContent = "You Win!";
 
         humanScore++;
 
@@ -98,9 +164,9 @@ function playRound(humanChoice, computerChoice){
 
 
    
-    if (humanChoice == "Scissors" && computerChoice == "Rock"){
+    if (humanChoice == "Scissor" && computerChoice == "Rock"){
 
-        result = "You Lose!";
+        result.textContent = "You Lose!";
 
         computerScore++;
 
@@ -109,7 +175,7 @@ function playRound(humanChoice, computerChoice){
 
     if (humanChoice == computerChoice ){
 
-        result = "You Draw!";
+        result.textContent = "You Draw!";
 
        
 
@@ -118,6 +184,11 @@ function playRound(humanChoice, computerChoice){
 
 
     console.log(result);
+
+
+    humanScoreDisplay.textContent = humanScore;
+
+    cpuScoreDisplay.textContent = computerScore;
 
 }
 
@@ -130,21 +201,7 @@ function playRound(humanChoice, computerChoice){
 
 function playGame(){
 
-    for(let i = 0 ; i < 4; i++){
-
-        const humanChoice =  getHumanChoice();
-
-
-        const computerChoice = getComputerChoice();
-
-        playRound(humanChoice, computerChoice)
-
-        console.log("Your Score : " +  humanScore);
-
-        console.log("CPU Score : " +  computerScore);
-    }
-
-
+  
     
 
 }
