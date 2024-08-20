@@ -1,6 +1,8 @@
 
 const container = document.querySelector(".container");
 
+const buttonsList = document.querySelector(".buttonsList");
+
 const rockButton = document.createElement("button");
 
 rockButton.textContent = "Rock";
@@ -20,16 +22,20 @@ scissorButton.textContent = "Scissor";
 scissorButton.id = "Scissor";
 
 
+buttonsList.appendChild(rockButton);
+
+buttonsList.appendChild(paperButton);
+
+buttonsList.appendChild(scissorButton);
+
+container.appendChild(buttonsList);
+
+
+
 const humanScoreDisplay = document.querySelector(".humanScoreValue");
 
 const cpuScoreDisplay = document.querySelector(".cpuScoreValue");
 
-
-container.appendChild(rockButton);
-
-container.appendChild(paperButton);
-
-container.appendChild(scissorButton);
 
 
 
@@ -116,6 +122,8 @@ function playRound(humanChoice, computerChoice){
 
     let result = document.querySelector(".results");
 
+  
+
     if (humanChoice == "Rock" && computerChoice == "Paper"){
 
         result.textContent = "You Lose!";
@@ -181,7 +189,9 @@ function playRound(humanChoice, computerChoice){
 
     }
 
+    let outcome = result.textContent;
 
+    result.textContent = "CPU CHOSE : " + computerChoice + " " + "      " + outcome;
 
     console.log(result);
 
